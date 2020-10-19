@@ -27,7 +27,7 @@ export const mountComposition = <Props= {}>(callback: () => any, options: Mounti
   let result: ReturnType<typeof callback>
   const { component, ...other }= options
   const Wrap = {
-    template: '',
+    template: '<div></div>',
     ...component,
     setup() {
       result = callback()
