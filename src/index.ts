@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import {GlobalMountOptions} from "@vue/test-utils/dist/types";
 import {Component, ComponentOptionsWithoutProps, VNode} from "vue";
+export { nextTick } from 'vue'
 
 type Slot = VNode | string | {
   render: Function;
@@ -23,16 +24,31 @@ interface MountingOptions<Props, Data = {}> {
   component?: ComponentOptionsWithoutProps
 }
 
-export const mountComposition = <Props= {}>(callback: () => any, options: MountingOptions<never> = {}) => {
-  let result: ReturnType<typeof callback>
+interface MountingResult<R> {
+  current: R | null,
+  error: Error | null
+}
+
+export const mountComposition = <R, Props>(callback: () => R, options: MountingOptions<never> = {}) => {
+  let result: MountingResult<R>
   const { component, ...other }= options
   const Wrap = {
     template: '<div></div>',
     ...component,
     setup() {
-      result = callback()
+      try {
+        result = {
+          current: callback(),
+          error: null
+        }
+      }catch (e) {
+        result = {
+          current: null,
+          error: e
+        }
+      }
       return {
-        result,
+        result ,
       }
     }
   }

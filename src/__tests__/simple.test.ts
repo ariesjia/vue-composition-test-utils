@@ -1,5 +1,5 @@
-import { mountComposition } from "../index";
-import { ref, nextTick } from 'vue'
+import { ref } from 'vue'
+import { mountComposition, nextTick } from "../index";
 
 export function useCounter(initialValue = 0) {
   const count = ref(initialValue)
@@ -9,29 +9,40 @@ export function useCounter(initialValue = 0) {
 
 test('should get current composition result', function() {
   const wrapper = mountComposition(useCounter)
-  expect(wrapper.result.count.value).toEqual(0)
+  expect(wrapper.result.current.count.value).toEqual(0)
 });
-
 
 test('should get current value when trigger method', function() {
   const wrapper = mountComposition(()=>useCounter(1))
-  expect(wrapper.result.count.value).toEqual(1)
-  wrapper.result.inc()
-  expect(wrapper.result.count.value).toEqual(2)
+  expect(wrapper.result.current.count.value).toEqual(1)
+  wrapper.result.current.inc()
+  expect(wrapper.result.current.count.value).toEqual(2)
 });
 
-test('should render template', async function() {
+test('should render template though template option', async function() {
+  const wrapper = mountComposition(useCounter, {
+    component: {
+      template: 'hello world {{result.current.count.value}}',
+    }
+  })
+  expect(wrapper.html()).toEqual('hello world 0')
+  await nextTick(() => {
+    wrapper.result.current.inc()
+  })
+  expect(wrapper.html()).toEqual('hello world 1')
+});
+
+test('should render template though render option', async function() {
   const wrapper = mountComposition(useCounter, {
     component: {
       render({ result}) {
-        return `hello world ${result.count.value}`
+        return `hello world ${result.current.count.value}`
       }
     }
   })
   expect(wrapper.html()).toEqual('hello world 0')
   await nextTick(() => {
-    wrapper.result.inc()
+    wrapper.result.current.inc()
   })
-  expect(wrapper.result.count.value).toEqual(1)
   expect(wrapper.html()).toEqual('hello world 1')
 });
