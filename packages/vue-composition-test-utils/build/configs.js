@@ -2,29 +2,21 @@ const path = require('path')
 const typescript = require('rollup-plugin-typescript2')
 const commonjs = require('rollup-plugin-commonjs')
 const { uglify } = require('rollup-plugin-uglify')
-const { terser } = require('rollup-plugin-terser')
 const pkg = require('../package.json')
 
 const resolve = _path => path.resolve(__dirname, '../', _path)
 
 const configs = {
-  cjs: {
+  es: {
     input: resolve('src/index.ts'),
     file: pkg.main,
     format: 'cjs',
     env: 'production'
   },
-  es: {
-    input: resolve('src/index.ts'),
-    file: pkg.module,
-    format: 'es',
-    env: 'production'
-  },
 }
 
 const compressPlugins = {
-  cjs: uglify,
-  es: terser
+  es: uglify
 }
 
 function genConfig (opts) {

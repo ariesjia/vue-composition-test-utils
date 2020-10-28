@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2015",
+    "lib": ["ESNext", "dom"],
     "module": "ES2015",
     "moduleResolution": "node",
     "declaration": true,
@@ -14,7 +15,6 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "outDir": "lib",
-    "lib": ["es2018", "dom"],
     "types": ["jest", "node"]
   },
   "exclude": [

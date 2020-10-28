@@ -1,7 +1,7 @@
 import { mountComposition, nextTick } from "../index";
 import { ref, watch } from 'vue'
 
-export function useCounter(changed, initialValue = 0, ) {
+function useCounter(changed, initialValue = 0, ) {
   const count = ref(initialValue)
   const inc = (delta = 1) => (count.value += delta)
   watch(

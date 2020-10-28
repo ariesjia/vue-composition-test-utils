@@ -9,5 +9,5 @@ src
 .travis.yml
 commitlint.config.js
 .storybook
-test/unit/coverage/
-test-report.xml
+test
+*.tgz

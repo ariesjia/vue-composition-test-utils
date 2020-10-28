@@ -1,8 +1,6 @@
 import * as TestUils from '@vue/test-utils'
-import {GlobalMountOptions} from "@vue/test-utils/dist/types";
-import {Component, ComponentOptionsWithoutProps, VNode} from "vue";
-import VueCompositionApi from '@vue/composition-api'
-export { nextTick } from 'vue-demi'
+import {Component, VNode} from "vue";
+import { nextTick as tick } from 'vue-demi'
 
 type Slot = VNode | string | {
   render: Function;
@@ -19,10 +17,10 @@ interface MountingOptions<Props, Data = {}> {
   slots?: SlotDictionary & {
     default?: Slot;
   };
-  global?: GlobalMountOptions;
+  global?: any;
   attachTo?: HTMLElement | string;
   shallow?: boolean;
-  component?: ComponentOptionsWithoutProps;
+  component?: any;
   localVue?: any;
 }
 
@@ -33,7 +31,7 @@ interface MountingResult<R> {
 
 export const mountComposition = <R, Props>(callback: () => R, options: MountingOptions<never> = {}) => {
   let result: MountingResult<R>
-  const { component, localVue, ...other }= options
+  const { component = {}, ...other }= options
   const Wrap = {
     template: '<div></div>',
     ...component,
@@ -55,19 +53,12 @@ export const mountComposition = <R, Props>(callback: () => R, options: MountingO
     }
   }
 
-  // @ts-ignore
-  let createLocalVue = TestUils.createLocalVue;
-  let globalLocalVue
-  if(createLocalVue) {
-    globalLocalVue = localVue ? localVue : createLocalVue();
-    globalLocalVue.use(VueCompositionApi)
-  }
-
-  // @ts-ignore
-  const vueWrapper = TestUils.mount<Props>(Wrap, {
-    ...other,
-    localVue: globalLocalVue,
-  });
+  const vueWrapper = TestUils.mount(Wrap, other);
 
   return Object.assign(vueWrapper, {result})
+}
+
+export const nextTick = async (callback) => {
+  callback && callback()
+  await tick();
 }

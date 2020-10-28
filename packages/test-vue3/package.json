@@ -1,0 +1,19 @@
+{
+  "name": "test-vue3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@vue/test-utils": "^2.0.0-beta.7",
+    "vue": "3.0.2",
+    "vue-composition-test-utils": "file:../vue-composition-test-utils/vue-composition-test-utils-v0.1.0.tgz",
+    "vue-demi": "^0.4.1",
+    "vue-template-compiler": "^2.6.12"
+  }
+}

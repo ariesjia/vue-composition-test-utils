@@ -15,9 +15,10 @@ pids
 *.pid
 *.seed
 *.pid.lock
+*.tgz
 
 lib-cov
-test/unit/coverage/
+*/**/test/unit/coverage/
 test-report.xml
 
 node_modules/

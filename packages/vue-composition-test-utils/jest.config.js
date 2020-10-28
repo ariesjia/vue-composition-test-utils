@@ -12,7 +12,7 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
-  collectCoverage: true,
+  collectCoverage: false,
   coverageReporters: ["html", "text-summary", "lcov"],
   coverageDirectory: "<rootDir>/test/unit/coverage",
   collectCoverageFrom: ["src/**/*.{ts, js}"]

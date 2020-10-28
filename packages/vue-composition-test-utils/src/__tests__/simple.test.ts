@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { mountComposition, nextTick } from "../index";
 
-export function useCounter(initialValue = 0) {
+function useCounter(initialValue = 0) {
   const count = ref(initialValue)
   const inc = (delta = 1) => (count.value += delta)
   return { count, inc }
