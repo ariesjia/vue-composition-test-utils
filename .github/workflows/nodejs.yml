@@ -19,7 +19,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install, build, and test
         run: |
-          npm install yarn -g
           yarn workspace vue-composition-test-utils install
           yarn build
           yarn
