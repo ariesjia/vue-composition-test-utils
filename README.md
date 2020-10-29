@@ -38,13 +38,6 @@ test('should get current composition result', function() {
   expect(wrapper.result.current.count.value).toEqual(0)
 });
 
-test('should get current value when trigger method', function() {
-  const wrapper = mountComposition(()=>useCounter(1))
-  expect(wrapper.result.current.count.value).toEqual(1)
-  wrapper.result.current.inc()
-  expect(wrapper.result.current.count.value).toEqual(2)
-});
-
 test('should render template though template option', async function() {
   const wrapper = mountComposition(useCounter, {
     component: {
@@ -55,24 +48,19 @@ test('should render template though template option', async function() {
   await nextTick(() => {
     wrapper.result.current.inc()
   })
+  expect(wrapper.result.current.count.value).toEqual(1)
   expect(wrapper.html()).toEqual('hello world 1')
 });
 
-test('should render template though render option', async function() {
-  const wrapper = mountComposition(useCounter, {
-    component: {
-      render({ result}) {
-        return `hello world ${result.current.count.value}`
-      }
-    }
-  })
-  expect(wrapper.html()).toEqual('hello world 0')
-  await nextTick(() => {
-    wrapper.result.current.inc()
-  })
-  expect(wrapper.html()).toEqual('hello world 1')
-});
 ```
+
+
+#### vue2 + @vue/composition-api demo
+[https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue2/test/simple.test.js](https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue2/test/simple.test.js)
+
+
+#### vue3 demo
+[https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue3/test/simple.test.js](https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue2/test/simple.test.js)
 
 ## API
 
