@@ -104,3 +104,8 @@ export declare const mountComposition: <R, Props>(callback: () => R, options?: M
 
 export const nextTick: (fn?: () => void) => Promise<void>
 ```
+
+
+### Thanks
+
+This project is inspired by [vue-demi](https://github.com/antfu/vue-demi)

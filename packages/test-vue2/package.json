@@ -9,7 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "vue-composition-test-utils": "../vue-composition-test-utils/vue-composition-test-utils-0.1.0.tgz"
   },
   "devDependencies": {
     "@vue/composition-api": "1.0.0-beta.18",
