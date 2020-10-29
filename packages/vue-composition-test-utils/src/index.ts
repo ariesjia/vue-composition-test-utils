@@ -1,22 +1,12 @@
-import * as TestUils from '@vue/test-utils'
-import {Component, VNode} from "vue";
+import { mount } from '@vue/test-utils'
+// @ts-ignore
 import { nextTick as tick } from 'vue-demi'
-
-type Slot = VNode | string | {
-  render: Function;
-} | Function | Component;
-
-type SlotDictionary = {
-  [key: string]: Slot;
-};
 
 interface MountingOptions<Props, Data = {}> {
   data?: () => {} extends Data ? any : Data extends object ? Partial<Data> : any;
   props?: Props;
   attrs?: Record<string, unknown>;
-  slots?: SlotDictionary & {
-    default?: Slot;
-  };
+  slots?: any;
   global?: any;
   attachTo?: HTMLElement | string;
   shallow?: boolean;
@@ -53,7 +43,7 @@ export const mountComposition = <R, Props>(callback: () => R, options: MountingO
     }
   }
 
-  const vueWrapper = TestUils.mount(Wrap, other);
+  const vueWrapper = mount(Wrap, other);
 
   return Object.assign(vueWrapper, {result})
 }

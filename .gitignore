@@ -16,6 +16,7 @@ pids
 *.seed
 *.pid.lock
 *.tgz
+.pnp.js
 
 lib-cov
 */**/test/unit/coverage/

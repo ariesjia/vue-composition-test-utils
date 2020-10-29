@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npm install ../vue-composition-test-utils/vue-composition-test-utils-0.1.0.tgz --no-save && jest"
   },
   "author": "",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "@vue/composition-api": "1.0.0-beta.18",
     "@vue/test-utils": "^1.1.0",
     "vue": "2.6.12",
-    "vue-composition-test-utils": "file:../vue-composition-test-utils/vue-composition-test-utils-v0.1.0.tgz",
+    "vue-composition-test-utils": "*",
     "vue-demi": "^0.4.1",
     "vue-template-compiler": "^2.6.12"
   }
