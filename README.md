@@ -60,7 +60,7 @@ test('should render template though template option', async function() {
 
 
 #### vue3 demo
-[https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue3/test/simple.test.js](https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue2/test/simple.test.js)
+[https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue3/test/simple.test.js](https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue3/test/simple.test.js)
 
 ## API
 
